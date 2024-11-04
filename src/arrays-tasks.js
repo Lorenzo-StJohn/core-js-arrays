@@ -327,8 +327,8 @@ function selectMany(arr, childrenSelector) {
  *   calculateBalance([ [ 10, 8 ], [ 1, 5 ] ])  => (10 - 8) + (1 - 5) = 2 + -4 = -2
  *   calculateBalance([]) => 0
  */
-function calculateBalance(/* arr */) {
-  throw new Error('Not implemented');
+function calculateBalance(arr) {
+  return arr.reduce((acc, el) => acc + el[0] - el[1], 0);
 }
 
 /**
@@ -343,8 +343,12 @@ function calculateBalance(/* arr */) {
  *    createChunks(['a', 'b', 'c', 'd', 'e'], 2) => [['a', 'b'], ['c', 'd'], ['e']]
  *    createChunks([10, 20, 30, 40, 50], 1) => [[10], [20], [30], [40], [50]]
  */
-function createChunks(/* arr, chunkSize */) {
-  throw new Error('Not implemented');
+function createChunks(arr, chunkSize) {
+  const ans = new Array(Math.ceil(arr.length / chunkSize)).fill(0);
+  return ans.map((el, index) => {
+    const size = Math.min(chunkSize, arr.length - index * chunkSize);
+    return arr.slice(index * chunkSize, index * chunkSize + size);
+  });
 }
 
 /**
